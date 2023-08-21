@@ -5,7 +5,7 @@ exports.getAll = async (req, res) => {
         const questions = await Question.find();
         res.status(200).json(questions);
     } catch (error) {
-        res.status(409).json("Some Error Occured");
+        res.status(400).json("Some Error Occured");
     }
 };
 
@@ -19,7 +19,7 @@ exports.createQuestion = async (req, res) => {
         res.status(200).json('Question Created')
 
     } catch (error) {
-        res.status(409).json("Some Error Occured");
+        res.status(400).json("Some Error Occured");
     }
 }
 
@@ -55,7 +55,7 @@ exports.updateQuestion = async (req, res) => {
         res.status(200).send({ question });
 
     } catch (error) {
-        res.status(409).json("Some Error Occured");
+        res.status(400).json("Some Error Occured");
     }
 }
 
@@ -76,7 +76,7 @@ exports.deleteQuestion = async (req, res) => {
         question = await Question.findByIdAndDelete(req.params.id);
         res.status(200).json("question deleted");
     } catch (error) {
-        res.status(409).json("Some Error Occured");
+        res.status(400).json("Some Error Occured");
     }
 }
 
@@ -119,7 +119,7 @@ exports.VoteQuestion = async (req, res) => {
         await Question.findByIdAndUpdate(req.params.id, question);
         res.status(200).json({ message: "Voted successfully" });
     } catch (error) {
-        res.status(409).json("Some Error Occured");
+        res.status(400).json("Some Error Occured");
     }
 }
 
