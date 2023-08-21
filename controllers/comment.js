@@ -12,19 +12,19 @@ exports.getComment = async (req, res) => {
 
 exports.createComment = async (req, res) => {
     try {
-        const { question, content } = req.body;
+        const { content } = req.body;
 
-        if (!user || !question || !content) {
-            return res.status(400).json("user id, question id, content are required");
+        if (!content) {
+            return res.status(400).json("content are required");
         }
 
         const comment = {
             "user": req.user.id,
-            "question": question,
+            "question": req.params.id,
             "content": content
         }
 
-        const Que = await Question.findById(question)
+        const Que = await Question.findById(req.params.id)
         if (!Que) {
             res.status(404).send("Question not founded")
         }

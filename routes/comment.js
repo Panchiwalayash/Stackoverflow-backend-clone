@@ -5,6 +5,6 @@ const fetchuser = require('../middleware/fetchuser')
 const { getComment, createComment } = require('../controllers/comment')
 
 router.get('/', fetchuser, getComment)
-router.get('/create/:id', fetchuser, createComment)
+router.post('/create/:id', fetchuser, createComment)
 
 module.exports = router
